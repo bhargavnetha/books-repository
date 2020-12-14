@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+
+
+import FormValidation from './FormValidation/FormValidation';
+import { render } from 'react-dom';
+import { Component } from 'react';
+import ReactDOM from 'react-dom';
+import React from 'react'
+import NavigationBar from './components/NavigationBar'
+import { Container, Row, Jumbotron, Col} from 'react-bootstrap';
+import nav from './components/NavigationStyle.css'
+import Welcome from './components/Welcome';
+import Footer from './components/Footer'
+import Book from './components/Book';
+import UserList from './components/UserList';
+import BookList from './components/BookList';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <Router>
+    <NavigationBar/>
+    <Container>
+      <Row>
+        <Col className="marginTop">
+          <Switch>
+            <Route path="/" exact component={Welcome}/>
+            <Route path="/add" exact component={Book}/>
+            <Route path="/edit/:id" exact component={Book}/>
+            <Route path="/list" exact component={BookList}/>
+            <Route path="/users" exact component={UserList}/>
+          </Switch>
+          {/* <Welcome/>
+          <Book/>
+          <BookList/> */}
+        </Col>
+      </Row>
+    </Container>
+    <Footer/>
+    </Router>
+  )
 }
 
-export default App;
+export default App
